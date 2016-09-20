@@ -7,21 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by Pavlo on 14-09,Sep-16.
- */
 public class JDBCStore implements Storage{
     private final Connection connection;
     String dbName = "postgres";
     String dbPassword = "root";
 
     public JDBCStore() throws SQLException, ClassNotFoundException {
-//        Class.forName("org.postgresql.Driver");
-//        this.connection =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/companiesDB",dbName, dbPassword);
         Class.forName("com.mysql.jdbc.Driver");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://104.198.56.204:3306/companies", "root", "root");
         this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
     }
 
     public Collection<Company> companys() {
@@ -70,7 +63,6 @@ public class JDBCStore implements Storage{
             e.printStackTrace();
         }
     }
-/*хз хз*/
     public void delete(int id) {
 
         String sql = "WITH RECURSIVE\n" +
@@ -85,18 +77,6 @@ public class JDBCStore implements Storage{
                 " DELETE FROM company WHERE (SELECT * FROM Rec \n" +
                 " WHERE cid is (?));";
 
-//        List<Company> list = new ArrayList<Company>();
-//        for(int i = 0; i < list.size(); ++i)
-//        {
-//            ResultSet list = "select cid from company where parentId = (?)";
-//        String qsl = "delete from company where id = (?)";
-//            delete(list[i]);
-//        }
-//        try (final PreparedStatement statement = this.connection.prepareStatement(sql)) {
-//            statement.setInt(1, id);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public Company get(int id) {
