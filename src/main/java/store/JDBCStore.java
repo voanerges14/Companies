@@ -13,23 +13,10 @@ public class JDBCStore implements Storage{
     String dbPassword = "root";
 
     public JDBCStore() throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.jdbc.Driver");
-        Class.forName("com.mysql.jdbc.GoogleDriver");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
-        this.connection =  DriverManager.getConnection("jdbc:google:mysql://104.198.56.204:3306/companies", "root", "root");
+        Class.forName("com.mysql.jdbc.Driver");
+        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
 
-//        String url = null;
-//        if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
-//            // Load the class that provides the new "jdbc:google:mysql://" prefix.
-//            Class.forName("com.mysql.jdbc.GoogleDriver");
-//            url = "jdbc:google:mysql://eliftechcompanies:eliftechcompanies:us-central1:eliftechcompanies/companies?user=root";
-//        } else {
-//            // Local MySQL instance to use during development.
-//            Class.forName("com.mysql.jdbc.Driver");
-//            url = "jdbc:mysql://127.0.0.1:3306/companies?user=root";
-//        }
-//        this.connection =  DriverManager.getConnection(url);
+
     }
 
     public Collection<Company> companys() {
